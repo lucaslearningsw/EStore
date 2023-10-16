@@ -19,7 +19,11 @@ namespace EStore.Catalog.Domain
         public int QtyStock { get; private set; }
         public Category Category { get; private set; }
 
-        public Product(string name, string description, bool active, decimal price, Guid categoryId, DateTime dateCreation, string image)
+        public Dimensions Dimensions { get; private set; }
+
+
+
+        public Product(string name, string description, bool active, decimal price, Guid categoryId, DateTime dateCreation, string image, Dimensions dimensions)
         {
             CategoryId = categoryId;
             Name = name;
@@ -28,6 +32,9 @@ namespace EStore.Catalog.Domain
             Price = price;
             DateTimeCreation = dateCreation;
             Image = image;
+            Dimensions = dimensions;
+            Validate();
+            
         }
 
         public void Activate() => Active = true;
@@ -42,12 +49,14 @@ namespace EStore.Catalog.Domain
 
         public void ChangeDescription(string description)
         {
+            Validations.ValidateIsNull(description,"O campo descrição do Produto não pode estar vazio");
             Description = description;
         }
 
         public void DebitStock(int quantity)
         {
             if (quantity < 0) quantity *= -1;
+            if (!HasStock(quantity)) throw new DomainException("Estoque insuficiente");
             QtyStock -= quantity;
         }
 
@@ -63,27 +72,13 @@ namespace EStore.Catalog.Domain
 
         public void Validate()
         { 
-
+            Validations.ValidateIsNull(Name, "O campo Nome do produto não pode estar vazio");
+            Validations.ValidateIsNull(Description, "O campo Descrição do produto não pode estar vazio");
+            Validations.ValidateIsEqual(CategoryId,Guid.Empty, "O campo CategoriaId do produto não pode estar vazio");
+            Validations.ValidateLessThan(Price,1,"O campo valor do produto não pode ser menor igual a 0");
+            Validations.ValidateIsNull(Image, "O campo Imagem não pode estar vazio");
         }
           
         
-    }
-
-    public class Category : Entity
-    {
-        public string Name { get; private set; }
-        public int Code { get; private set; }
-
-        public Category(string name, int code)
-        {
-            Name = name;
-            Code = code;
-        }
-
-        public override string ToString()
-        {
-            return $"{Name} - {Code}";
-        }
-
     }
 }

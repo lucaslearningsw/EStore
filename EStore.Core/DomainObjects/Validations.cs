@@ -9,15 +9,7 @@ namespace EStore.Core.DomainObjects
 {
     public class Validations
     {
-        public static void ValidateIfIsEqual(object object1, object object2, string mensage)
-        {
-            if (!object1.Equals(object2))
-            {
-                throw new DomainException(mensage);
-            }
-        }
-
-        public static void ValidateIfIsDifferent(object object1, object object2, string mensage)
+        public static void ValidateIsEqual(object object1, object object2, string mensage)
         {
             if (object1.Equals(object2))
             {
@@ -25,7 +17,15 @@ namespace EStore.Core.DomainObjects
             }
         }
 
-        public static void ValidateCaracteres(string value, int max, string mensage)
+        public static void ValidateIsDifferent(object object1, object object2, string mensage)
+        {
+            if (object1.Equals(object2))
+            {
+                throw new DomainException(mensage);
+            }
+        }
+
+        public static void ValidateSize(string value, int max, string mensage)
         {
             var lentgh = value.Trim().Length;
             if (lentgh > max)
@@ -34,7 +34,7 @@ namespace EStore.Core.DomainObjects
             }
         }
 
-        public static void ValidateCaracteres(string value, int min, int max, string mensage)
+        public static void ValidateSize(string value, int min, int max, string mensage)
         {
             var lentgh = value.Trim().Length;
             if (lentgh < min || lentgh > max)
@@ -53,7 +53,7 @@ namespace EStore.Core.DomainObjects
             }
         }
 
-        public static void ValidateIfIsNull(string value, string mensage)
+        public static void ValidateIsNull(string value, string mensage)
         {
             if (value == null || value.Trim().Length == 0)
             {
@@ -61,7 +61,7 @@ namespace EStore.Core.DomainObjects
             }
         }
 
-        public static void ValidateIfIsNull(object object1, string mensage)
+        public static void ValidateIsNull(object object1, string mensage)
         {
             if (object1 == null)
             {
@@ -109,51 +109,51 @@ namespace EStore.Core.DomainObjects
             }
         }
 
-        public static void ValidateIfMinorEqualsMin(decimal value, decimal min, string mensage)
+        public static void ValidateLessThan(decimal value, decimal min, string mensage)
         {
-            if (value <= min)
+            if (value < min)
             {
                 throw new DomainException(mensage);
             }
         }
 
-        public static void ValidateIfMinorEqualsMin(int value, int min, string mensage)
+        public static void ValidateLessThan(int value, int min, string mensage)
         {
-            if (value <= min)
+            if (value < min)
             {
                 throw new DomainException(mensage);
             }
         }
 
-        public static void ValidateIfMinorEqualsMin(long value, long min, string mensage)
+        public static void ValidateLessThan(long value, long min, string mensage)
         {
-            if (value <= min)
-            {
-                throw new DomainException(mensage);
-            }
-        }
-
-
-        public static void ValidateIfMinorEqualsMin(double value, double min, string mensage)
-        {
-            if (value <= min)
+            if (value < min)
             {
                 throw new DomainException(mensage);
             }
         }
 
 
-        public static void ValidateIfIsFalse(bool value, string mensage)
+        public static void ValidateLessThan(double value, double min, string mensage)
         {
-            if (value)
+            if (value < min)
             {
                 throw new DomainException(mensage);
             }
         }
 
-        public static void ValidateIfIsTrue(bool value, string mensage)
+
+        public static void ValidateIsFalse(bool value, string mensage)
         {
             if (!value)
+            {
+                throw new DomainException(mensage);
+            }
+        }
+
+        public static void ValidateIsTrue(bool value, string mensage)
+        {
+            if (value)
             {
                 throw new DomainException(mensage);
             }
