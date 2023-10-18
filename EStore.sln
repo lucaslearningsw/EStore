@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EStore.Core", "EStore.Core\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{08D9F3BA-8C5C-4BF3-95A3-6A9F7D72DDD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EStore.Catalog.Domain.Tests", "EStore.Catalog.Domain.Tests\EStore.Catalog.Domain.Tests.csproj", "{470B2EDF-1B40-4CDA-96B4-68724E5C638B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EStore.Catalog.Domain.Tests", "EStore.Catalog.Domain.Tests\EStore.Catalog.Domain.Tests.csproj", "{470B2EDF-1B40-4CDA-96B4-68724E5C638B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EStore.Catalog.Data", "EStore.Catalog.Data\EStore.Catalog.Data.csproj", "{1F16DFFE-1A93-42C5-9733-E014A49A88A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{470B2EDF-1B40-4CDA-96B4-68724E5C638B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{470B2EDF-1B40-4CDA-96B4-68724E5C638B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{470B2EDF-1B40-4CDA-96B4-68724E5C638B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F16DFFE-1A93-42C5-9733-E014A49A88A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F16DFFE-1A93-42C5-9733-E014A49A88A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F16DFFE-1A93-42C5-9733-E014A49A88A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F16DFFE-1A93-42C5-9733-E014A49A88A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{02C77D8B-00AB-4B6B-90FD-154A267E5BB3} = {7BD3B8DF-C67D-4561-9D1C-11E91CBE5A08}
 		{08D9F3BA-8C5C-4BF3-95A3-6A9F7D72DDD2} = {D647B14B-26D8-4736-B709-28C6EE5E8043}
 		{470B2EDF-1B40-4CDA-96B4-68724E5C638B} = {08D9F3BA-8C5C-4BF3-95A3-6A9F7D72DDD2}
+		{1F16DFFE-1A93-42C5-9733-E014A49A88A1} = {D647B14B-26D8-4736-B709-28C6EE5E8043}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40529822-5C03-4CCE-9047-345BCD0CDF76}

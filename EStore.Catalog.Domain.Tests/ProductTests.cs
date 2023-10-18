@@ -33,12 +33,12 @@ namespace EStore.Catalog.Domain.Tests
                     new Dimensions(height: 2, width: 1, profundity: 2));
             });
 
-            Assert.Equal("O campo CategoriaId do produto não pode estar vazio", ex.Message);
+            Assert.Equal("O campo Categoria do produto deve ser informado", ex.Message);
 
 
             ex = Assert.Throws<DomainException>(() =>
             {
-                new Product("Teste", "Descrição", false, 0, Guid.NewGuid(), DateTime.Now, "Imagem",
+                new Product("Teste", "Descrição", false, -1221, Guid.NewGuid(), DateTime.Now, "Imagem",
                     new Dimensions(height: 2, width: 1, profundity: 2));
             });
 
@@ -51,6 +51,34 @@ namespace EStore.Catalog.Domain.Tests
             });
 
             Assert.Equal("O campo Imagem não pode estar vazio", ex.Message);
+
+
+            ex = Assert.Throws<DomainException>(() =>
+            {
+                new Product("Teste", "Descrição", false, 10, Guid.NewGuid(), DateTime.Now, "TEST",
+                    new Dimensions(height: 0, width: 1, profundity: 2));
+            });
+
+            Assert.Equal("O campo altura não pode ser menor ou igual a 0", ex.Message);
+
+
+            ex = Assert.Throws<DomainException>(() =>
+            {
+                new Product("Teste", "Descrição", false, 10, Guid.NewGuid(), DateTime.Now, "TEST",
+                    new Dimensions(height: 1, width: 0, profundity: 2));
+            });
+
+            Assert.Equal("O campo altura não pode ser menor ou igual a 0", ex.Message);
+
+
+
+            ex = Assert.Throws<DomainException>(() =>
+            {
+                new Product("Teste", "Descrição", false, 10, Guid.NewGuid(), DateTime.Now, "TEST",
+                    new Dimensions(height: 1, width: 1, profundity: 0));
+            });
+
+            Assert.Equal("O campo profundidade não pode ser menor ou igual a 0", ex.Message);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace EStore.Catalog.Domain
         {
             Validations.ValidateLessThan(height, 1, "O campo altura não pode ser menor ou igual a 0");
             Validations.ValidateLessThan(width, 1, "O campo altura não pode ser menor ou igual a 0");
-            Validations.ValidateLessThan(profundity, 1, "O campo altura não pode ser menor ou igual a 0");
+            Validations.ValidateLessThan(profundity, 1, "O campo profundidade não pode ser menor ou igual a 0");
 
             Height = height;
             Width = width;

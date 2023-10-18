@@ -74,7 +74,7 @@ namespace EStore.Catalog.Domain
         { 
             Validations.ValidateIsNull(Name, "O campo Nome do produto não pode estar vazio");
             Validations.ValidateIsNull(Description, "O campo Descrição do produto não pode estar vazio");
-            Validations.ValidateIsEqual(CategoryId,Guid.Empty, "O campo CategoriaId do produto não pode estar vazio");
+            Validations.ValidateIsEqual(CategoryId,Guid.Empty, "O campo Categoria do produto deve ser informado");
             Validations.ValidateLessThan(Price,1,"O campo valor do produto não pode ser menor igual a 0");
             Validations.ValidateIsNull(Image, "O campo Imagem não pode estar vazio");
         }

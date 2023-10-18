@@ -19,7 +19,7 @@ namespace EStore.Core.DomainObjects
 
         public static void ValidateIsDifferent(object object1, object object2, string mensage)
         {
-            if (object1.Equals(object2))
+            if (!object1.Equals(object2))
             {
                 throw new DomainException(mensage);
             }
