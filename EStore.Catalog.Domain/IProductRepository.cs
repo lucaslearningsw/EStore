@@ -11,7 +11,7 @@ namespace EStore.Catalog.Domain
     {
         Task<IEnumerable<Product>> GetAll();
         Task<Product> GetByID(Guid id);
-        Task<IEnumerable<Product>> GetByCategory(int code);
+        Task<IEnumerable<Product>> GetByCategory(Guid id);
         Task<IEnumerable<Category>> GetCategorys();
 
         void Add(Product product);
