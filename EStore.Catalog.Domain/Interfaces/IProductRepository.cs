@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EStore.Core.Data;
 
-namespace EStore.Catalog.Domain
+namespace EStore.Catalog.Domain.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EStore.Catalog.Domain;
+using EStore.Catalog.Domain.Interfaces;
 using EStore.Core.Data;
 using Microsoft.EntityFrameworkCore;
 

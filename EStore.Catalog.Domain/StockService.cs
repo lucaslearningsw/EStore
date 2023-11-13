@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EStore.Catalog.Domain.Events;
+using EStore.Catalog.Domain.Interfaces;
 using EStore.Core.DomainObjects;
+using EStore.Core.Mediatr;
 
 namespace EStore.Catalog.Domain
 {
@@ -11,10 +14,11 @@ namespace EStore.Catalog.Domain
     {
         private readonly IProductRepository _productRepository;
 
-
-        public StockService(IProductRepository productRepository)
+        private  readonly  IMediatrHandler _mediatrEvents;
+        public StockService(IProductRepository productRepository, IMediatrHandler mediatrHandler)
         {
             _productRepository = productRepository;
+            _mediatrEvents = mediatrHandler;
         }
 
         public async Task<bool> StockDebit(Guid productId, int qty)
@@ -26,6 +30,12 @@ namespace EStore.Catalog.Domain
             if(!product.HasStock(qty)) return false;
 
             product.DebitStock(qty);
+
+            //TODO: parametizer qty 
+            if (product.QtyStock < 20)
+            {
+                await _mediatrEvents.PublishEvent(new EventProductDropStock(product.Id, product.QtyStock));
+            }
 
             _productRepository.Update(product);
 
