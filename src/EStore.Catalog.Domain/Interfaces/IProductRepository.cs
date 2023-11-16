@@ -12,7 +12,7 @@ namespace EStore.Catalog.Domain.Interfaces
         Task<IEnumerable<Product>> GetAll();
         Task<Product> GetByID(Guid id);
         Task<IEnumerable<Product>> GetByCategory(Guid id);
-        Task<IEnumerable<Category>> GetCategorys();
+        Task<IEnumerable<Category>> GetCategories();
 
         void Add(Product product);
         void Update(Product product);

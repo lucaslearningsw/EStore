@@ -35,7 +35,7 @@ namespace EStore.Catalog.Data.Repository
             return await _context.Products.AsNoTracking().Include(p => p.Category).Where(c => c.CategoryId == id).ToListAsync();
         }
 
-        public async Task<IEnumerable<Category>> GetCategorys()
+        public async Task<IEnumerable<Category>> GetCategories()
         {
             return await _context.Categories.AsNoTracking().ToListAsync();
         }

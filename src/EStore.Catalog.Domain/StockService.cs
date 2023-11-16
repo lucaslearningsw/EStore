@@ -21,7 +21,7 @@ namespace EStore.Catalog.Domain
             _mediatrEvents = mediatrHandler;
         }
 
-        public async Task<bool> StockDebit(Guid productId, int qty)
+        public async Task<bool> DebitStock(Guid productId, int qty)
         {
             var product = await _productRepository.GetByID(productId);
 
@@ -42,7 +42,7 @@ namespace EStore.Catalog.Domain
             return await _productRepository.UnitOfWork.Commit();
         }
 
-        public async Task<bool> StockReplenishment(Guid productId, int qty)
+        public async Task<bool> ReplenishmentStock(Guid productId, int qty)
         {
             var product = await _productRepository.GetByID(productId);
 
