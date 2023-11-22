@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EStore.Core", "src\EStore.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EStore.Catalog.Domain.Tests", "tests\EStore.Catalog.Domain.Tests\EStore.Catalog.Domain.Tests.csproj", "{935BADCB-9013-419B-9326-F985B70D8B46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EStore.WebApp.MVC", "src\EStore.WebApp.MVC\EStore.WebApp.MVC.csproj", "{B0D88E15-EB15-41F4-A223-ECA238CE90A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{935BADCB-9013-419B-9326-F985B70D8B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{935BADCB-9013-419B-9326-F985B70D8B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{935BADCB-9013-419B-9326-F985B70D8B46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0D88E15-EB15-41F4-A223-ECA238CE90A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0D88E15-EB15-41F4-A223-ECA238CE90A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0D88E15-EB15-41F4-A223-ECA238CE90A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0D88E15-EB15-41F4-A223-ECA238CE90A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{E3D50DEC-4BDA-47BB-838B-EF55C3331C4C} = {D647B14B-26D8-4736-B709-28C6EE5E8043}
 		{A66E3BB7-58B7-4AC5-8BB4-2EE10EB079A6} = {7BD3B8DF-C67D-4561-9D1C-11E91CBE5A08}
 		{935BADCB-9013-419B-9326-F985B70D8B46} = {08D9F3BA-8C5C-4BF3-95A3-6A9F7D72DDD2}
+		{B0D88E15-EB15-41F4-A223-ECA238CE90A3} = {9043AEE5-1170-4F6B-B65E-F12E58CA8E3B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40529822-5C03-4CCE-9047-345BCD0CDF76}

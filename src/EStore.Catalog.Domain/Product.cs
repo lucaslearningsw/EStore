@@ -22,6 +22,7 @@ namespace EStore.Catalog.Domain
         public Dimensions Dimensions { get; private set; }
 
 
+        protected Product() { }
 
         public Product(string name, string description, bool active, decimal price, Guid categoryId, DateTime dateCreation, string image, Dimensions dimensions)
         {

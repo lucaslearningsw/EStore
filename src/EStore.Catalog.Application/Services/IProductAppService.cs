@@ -7,7 +7,7 @@ using EStore.Catalog.Application.Dtos;
 
 namespace EStore.Catalog.Application.Services
 {
-    internal interface IProductAppService : IDisposable
+    public interface IProductAppService : IDisposable
     {
         Task<IEnumerable<ProductDto>> GetByCategory(Guid id);
 
