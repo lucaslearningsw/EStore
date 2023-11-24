@@ -13,7 +13,7 @@
 
 
 <div >
-    <a asp-controller="AdminProduct" asp-action="NewProduct" class="btn btn-primary"> Adicionar Novo Produto</a>
+    <a asp-controller="AdminProduct" asp-action="NewProduct" class="btn btn-success"> Adicionar Novo Produto</a>
 </div>
 
 <hr/>
@@ -21,26 +21,29 @@
 <div class="row">
 
     @{
-       foreach (var product  in Model.OrderBy(p => p.CategoryId))
-       {
-          <div class="col-md-2 col-sm-6">
-           <span class="thumbnail">
-             <img width="200" height="200" src="~/Images/@product.Image" />
-             <h4>@product.Name</h4>
-             <p>@product.QtyStock em estoque</p>
-             <p>@product.Description</p>
-             <p class="price">@product.Price.ToString("C")</p>
-             <hr class="line">
-             <div class="row">
-                        <a asp-controller="AdminProduct" asp-action="UpdateProduct" asp-route-id="@product.Id" class="btn btn-warning">Atualizar Produto</a>
+        foreach (var product  in Model.OrderBy(p => p.CategoryId))
+        {
+            <div class="col-md-2 col-sm-6" style="margin: 10px;">
+                <span class="thumbnail">
+                    <img width="200" height="200" src="~/Images/@product.Image" />
+                    <h4>@product.Name</h4>
+                    <p>@product.QtyStock em estoque</p>
+                    <p>@product.Description</p>
+                    <p class="price">@product.Price.ToString("C")</p>
+                    <hr class="line">
+                    <div class="row">
+                        <a asp-controller="AdminProduct" asp-action="UpdateProduct" asp-route-id="@product.Id" class="btn btn-secondary" style="margin-bottom: 5px">Atualizar Produto</a>
+                        
                         <a asp-controller="AdminProduct" asp-action="UpdateStock" asp-route-id="@product.Id" asp-route-qty="" class="btn btn-dark">Atualizar Estoque</a>
-             </div>
-           </span>
+                    </div>
+                </span>
 
-          </div>
-       }
+            </div>
+        }
 
     
     }
 
 </div>
+
+        

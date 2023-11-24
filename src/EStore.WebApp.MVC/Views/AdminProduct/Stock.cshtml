@@ -25,7 +25,8 @@
                 <form method="post" asp-asp-controller="AdminProduct" asp-action="UpdateStock">
                    <input type="hidden" id="Id" name="Id" value="@Model.Id"/>
                    <input type="text" id="qty" name="qty" />
-                   <button class="btn btn-info">Atualizar Estoque</button>
+                   <button class="btn btn-success">Atualizar Estoque</button>
+                   <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
                 </form>
             </div>
         </div>

@@ -32,7 +32,16 @@ namespace EStore.WebApp.MVC.Controllers.Admin
         public async Task<IActionResult> NewProduct(ProductDto productDto)
         {
 
-            if(!ModelState.IsValid) return View(await FillCategories(productDto));
+            ModelState.Remove("Image");
+            ModelState.Remove("ImageUpload");
+            if (!ModelState.IsValid) return View(await FillCategories(productDto));
+            var imgId = Guid.NewGuid() + "_";
+            if (!await UploadFile(productDto.ImageUpload, imgId))
+            {
+                return View(productDto);
+            }
+
+            productDto.Image = imgId + productDto.ImageUpload.FileName;
 
             await _productAppService.AddProduct(productDto);
 
@@ -52,13 +61,32 @@ namespace EStore.WebApp.MVC.Controllers.Admin
         [Route("update-product")]
         public async Task<IActionResult> UpdateProduct(Guid id, ProductDto productDto)
         {
-            var product = await _productAppService.GetById(id);
-            productDto.QtyStock = product.QtyStock;
 
+            if (id != productDto.Id) return NotFound(); 
+
+            var productUpdated = await _productAppService.GetById(id);
+
+            productDto.Image = productUpdated.Image;
+            productDto.QtyStock = productUpdated.QtyStock;
             ModelState.Remove("QtyStock");
-            if(!ModelState.IsValid) return View(await FillCategories(productDto));
 
-            await _productAppService.UpdateProduct(productDto);
+
+            if (!ModelState.IsValid) return View(await FillCategories(productDto));
+
+
+            if (productDto.ImageUpload != null)
+            {
+                var imgId = Guid.NewGuid() + "_";
+                if (!await UploadFile(productDto.ImageUpload, imgId))
+                {
+                    return View(productDto);
+                }
+
+                productUpdated.Image = imgId + productDto.ImageUpload.FileName;
+            }
+
+
+            await _productAppService.UpdateProduct(productUpdated);
             
             return RedirectToAction("Index");
         }
@@ -95,6 +123,28 @@ namespace EStore.WebApp.MVC.Controllers.Admin
         {
             productDto.Categories = await _productAppService.GetAllCategories();
             return productDto;
+        }
+
+
+
+        private async Task<bool> UploadFile(IFormFile imagemUpload, string imgId)
+        {
+            if (imagemUpload.Length <= 0) return false;
+
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageS", imgId + imagemUpload.FileName);
+
+            if (System.IO.File.Exists(path))
+            {
+                ModelState.AddModelError(string.Empty, "Já existe um arquivo com este nome!");
+                return false;
+            }
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await imagemUpload.CopyToAsync(stream);
+            }
+
+            return true;
         }
     }
 }
