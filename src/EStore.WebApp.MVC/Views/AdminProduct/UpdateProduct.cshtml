@@ -46,12 +46,12 @@
                 <label asp-for="ImageUpload" class="control-label"></label>
 
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="ImageUpload" asp-for="ImageUpload">
-                    <label data-browse="Procurar" style="width: 400px" class="custom-file-label" for="ImageUpload"></label>
+                    <input type="text" class="custom-file-input" id="Image" asp-for="Image">
+                    <label data-browse="Procurar" style="width: 400px" class="custom-file-label" for="Image"></label>
                     <label style="display: none" id="img_nome"></label>
                 </div>
 
-                <span asp-validation-for="ImageUpload" class="text-danger"></span>
+                <span asp-validation-for="Image" class="text-danger"></span>
             </div>
 
 
@@ -95,14 +95,5 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
-    <script>
-        $("#ImagemUpload").change(function){
-            $("#img_nome").text(this.files[0].name);
-            $("#img_nome")[0].style.display = 'block';
-        });
-
-        $("#ImagemUpload").attr("data-val", "true");
-        $("#ImagemUpload").attr("data-val-required", "Preencha o campo Imagem");
-
-    </script>
+  
 }

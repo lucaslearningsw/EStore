@@ -64,10 +64,13 @@ namespace EStore.WebApp.MVC.Controllers.Admin
 
             if (id != productDto.Id) return NotFound(); 
 
-            var productUpdated = await _productAppService.GetById(id);
+            var product = await _productAppService.GetById(id);
 
-            productDto.Image = productUpdated.Image;
-            productDto.QtyStock = productUpdated.QtyStock;
+            productDto.Image = product.Image;
+            productDto.QtyStock = product.QtyStock;
+
+            ModelState.Remove("Image");
+            ModelState.Remove("ImageUpload");
             ModelState.Remove("QtyStock");
 
 
@@ -82,11 +85,11 @@ namespace EStore.WebApp.MVC.Controllers.Admin
                     return View(productDto);
                 }
 
-                productUpdated.Image = imgId + productDto.ImageUpload.FileName;
+                product.Image = imgId + productDto.ImageUpload.FileName;
             }
 
-
-            await _productAppService.UpdateProduct(productUpdated);
+  
+            await _productAppService.UpdateProduct(productDto);
             
             return RedirectToAction("Index");
         }
@@ -129,9 +132,12 @@ namespace EStore.WebApp.MVC.Controllers.Admin
 
         private async Task<bool> UploadFile(IFormFile imagemUpload, string imgId)
         {
-            if (imagemUpload.Length <= 0) return false;
-
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageS", imgId + imagemUpload.FileName);
+            if (imagemUpload.Length <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "Campo Imagem é obrigatório ");
+                return false;
+            }
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", imgId + imagemUpload.FileName);
 
             if (System.IO.File.Exists(path))
             {
