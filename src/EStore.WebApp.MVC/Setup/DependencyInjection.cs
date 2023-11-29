@@ -2,8 +2,10 @@
 using EStore.Catalog.Data;
 using EStore.Catalog.Data.Repository;
 using EStore.Catalog.Domain;
+using EStore.Catalog.Domain.Events;
 using EStore.Catalog.Domain.Interfaces;
 using EStore.Core.Mediatr;
+using MediatR;
 
 namespace EStore.WebApp.MVC.Setup
 {
@@ -20,6 +22,10 @@ namespace EStore.WebApp.MVC.Setup
             services.AddScoped<IProductAppService, ProductAppService>();
             services.AddScoped<IStockService, StockService>();
             services.AddScoped<CatalogContext>();
+
+
+            services.AddScoped<INotificationHandler<EventProductDropStock>, EventProductHandler>();
+
         }
     }
 }
